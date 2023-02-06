@@ -1,9 +1,12 @@
 import './App.css';
+import Screen from './components/Screen';
+import Controls from './components/Controls';
 
 function App() {
   return (
     <div className="App">
-      app
+      <Screen />
+      <Controls />
     </div>
   );
 }

@@ -1,0 +1,37 @@
+.App{
+  height: 100vh;
+  width: 100%;
+  padding: 10px;
+}
+
+.controls{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.control-btns{
+  display: flex;
+  width: 100%;
+}
+
+.control-btns button:nth-child(1){
+  margin-right: 5px;
+}
+
+.control-btns button:nth-child(2){
+  margin-left: 5px;
+}
+
+.btn-analytics{
+  background-color: rgb(84, 190, 84);
+}
+
+.btn-analytics:hover{
+  background-color: rgb(81, 179, 81);
+}
+
+.screen{
+  height: 80%;
+}
