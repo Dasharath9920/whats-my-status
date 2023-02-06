@@ -16,6 +16,11 @@
   width: 100%;
 }
 
+.control-btns button{
+  height: 40px;
+  margin-bottom: 10px;
+}
+
 .control-btns button:nth-child(1){
   margin-right: 5px;
 }
@@ -34,4 +39,20 @@
 
 .screen{
   height: 80%;
+}
+
+.time-list{
+  text-align: center;
+  background-color: aliceblue;
+  transition: .3s ease all;
+}
+
+.list-item{
+  padding: 6px 10px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.list-item:hover{
+  background-color: rgb(199, 217, 232);
 }

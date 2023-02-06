@@ -6,6 +6,9 @@
 
 button{
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   background-color: rgb(71, 189, 215);
   font-size: 1.3rem;
@@ -13,12 +16,16 @@ button{
   color: white;
   font-weight: bold;
   padding: 12px 20px;
+  height: 50px;
   border-radius: 5px;
   width: 100%;
   transition: .3s ease all;
-  margin-bottom: 10px;
 }
 
 button:hover{
   background-color: rgb(49, 165, 232);;
+}
+
+ul{
+  list-style: none;
 }
