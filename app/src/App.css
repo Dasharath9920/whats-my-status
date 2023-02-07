@@ -53,15 +53,27 @@
   height: 80%;
 }
 
-.time-list{
+.filter-data-container, .place-container{
+  position: relative;
+}
+
+.time-list, .place-list{
+  position: absolute;
+  top: 50px;
+  left: 0px;
+  width: 100%;
   text-align: center;
   background-color: aliceblue;
   transition: .3s ease all;
+  z-index: 100;
+  padding: 10px 0px;
+  font-size: 1.3rem;
 }
 
 .list-item{
-  padding: 6px 10px;
+  padding: 6px;
   border-radius: 2px;
+  border-bottom: 1px solid lightgrey;
   cursor: pointer;
 }
 
@@ -76,23 +88,41 @@
 }
 
 .editor{
+  height: 100%;
   font-size: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 50px;
+  position: relative;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .editor-btns{
   width: 70%;
+  position: absolute;
+  bottom: 10px;
+  left: auto;
+  right: auto;
 }
 
 .time-container{
-  margin: 20px 0px;
+  margin: 40px 0px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+}
+
+.time-container p{
+  font-size: 1.3rem;
 }
 
 .date-time-block{
   width: 80%;
   padding: 5px 10px;
+}
+
+.input-minutes{
+  text-align: center;
+  width: 100px;
+  margin: 0px 10px;
 }

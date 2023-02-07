@@ -52,7 +52,7 @@ function Screen() {
             <button onClick={() => setAnalytics('graph')}>Graph</button>
         </div>
 
-        <div className="time-period">
+        <div className="filter-data-container">
             <button onClick={() => setExpand(!expand)}>Filter Data <span>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 40}}/>: <KeyboardArrowUpIcon sx={{fontSize: 40}}/> }</span></button>
             {expand && 
               <ul className='time-list'>

@@ -29,3 +29,11 @@ button:hover{
 ul{
   list-style: none;
 }
+
+input{
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+  border-bottom: 1px solid lightgrey;
+  font-size: 1.1rem;
+}
