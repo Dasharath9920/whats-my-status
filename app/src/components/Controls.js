@@ -7,15 +7,12 @@ function Controls() {
   const myState = useSelector(state => state.updateProperties);
   const dispatch = useDispatch();
 
-  const [property, setProperty] = useState(myState.property);
   const [analyticMode, setAnalyticMode] = useState(true);
 
   const setPropertyType = (propertyType) => {
-    setProperty(propertyType);
-
     dispatch({
         type: actionTypes.UPDATE_PROPERTY,
-        property: property
+        property: propertyType
     })
   }
 

@@ -3,7 +3,8 @@ import actionTypes from "./actionTypes";
 const initializer = {
     property: 'time',
     analyticMode: true,
-    analyticType: 'data'
+    analyticType: 'data',
+    timeFilter: 'Today'
 };
 
 const updateProperties = (state=initializer, action) => {
@@ -18,6 +19,10 @@ const updateProperties = (state=initializer, action) => {
 
         case actionTypes.UPDATE_ANALYTIC_TYPE: {
             return {...state, analyticType: action.analyticType};
+        }
+
+        case actionTypes.UPDATE_TIME_FILTERS: {
+            return {...state, timeFilter: action.timeFilter};
         }
 
         default: 

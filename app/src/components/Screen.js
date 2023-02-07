@@ -3,6 +3,8 @@ import {useSelector, useDispatch} from 'react-redux'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import actionTypes from '../reducers/actionTypes';
+import Analytics from './Analytics';
+import Editor from './Editor';
 
 function Screen() {
 
@@ -10,8 +12,8 @@ function Screen() {
   const dispatch = useDispatch();
 
   const [expand, setExpand] = useState(false);
-  const [analyticType, setAnalyticType] = useState(myState.analyticType);
   const [analyticMode, setAnalyticMode] = useState(myState.analyticMode);
+  const [timeFilter, setTimeFilter] = useState(myState.timeFilter);
 
   const timeOptions = {
     TODAY: 'Today',
@@ -24,7 +26,19 @@ function Screen() {
   }
 
   const setAnalytics = (analyticType) => {
-    setAnalyticType(analyticType);
+    dispatch({
+      type: actionTypes.UPDATE_ANALYTIC_TYPE,
+      analyticType: analyticType
+    });
+  }
+
+  const updateTimeFilter = (filterType) => {
+    setTimeFilter(filterType);
+
+    dispatch({
+      type: actionTypes.UPDATE_TIME_FILTERS,
+      timeFilter: timeFilter
+    });
   }
 
   useEffect(() => {
@@ -39,16 +53,20 @@ function Screen() {
         </div>
 
         <div className="time-period">
-            <button onClick={() => setExpand(!expand)}>Time Period <span>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 40}}/>: <KeyboardArrowUpIcon sx={{fontSize: 40}}/> }</span></button>
+            <button onClick={() => setExpand(!expand)}>Filter Data <span>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 40}}/>: <KeyboardArrowUpIcon sx={{fontSize: 40}}/> }</span></button>
             {expand && 
-                <ul className='time-list'>
-                    {Object.keys(timeOptions).map((timePeriod,index) => <li key={index} className='list-item'>{timeOptions[timePeriod]}</li>)}
-                </ul>
+              <ul className='time-list'>
+                  {Object.keys(timeOptions).map((timePeriod,index) => 
+                    <li key={index} className='list-item' onClick={(e) => updateTimeFilter(timePeriod)}>{timeOptions[timePeriod]}</li>
+                  )}
+              </ul>
             }
         </div>
-        <div className="analytics">
-            {analyticMode && <h1>Analytics screen</h1> }
-            {!analyticMode && <h1>Non analytics screen</h1> }
+
+        <div className="analytic-container">
+          {analyticMode && <Analytics /> }
+
+          {!analyticMode && <Editor />}
         </div>
     </div>
   )
