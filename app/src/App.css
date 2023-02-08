@@ -53,6 +53,10 @@
   height: 80%;
 }
 
+.place-container button{
+  width: 400px;
+}
+
 .filter-data-container, .place-container{
   position: relative;
 }

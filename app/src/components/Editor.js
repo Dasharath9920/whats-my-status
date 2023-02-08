@@ -8,12 +8,13 @@ function Editor() {
   const myState = useSelector(state => state.updateProperties);
   const [property, setProperty] = useState(myState.property);
   const [expand, setExpand] = useState(false);
-  const [place, setPlace] = useState('');
-  const [time, setTime] = useState();
-  const [activity, setActivity] = useState('');
-  const [amount, setAmount] = useState();
   
-  const timeSpentOn = {
+  const [timeSpentOn, setTimeSpentOn] = useState('');
+  const [time, setTime] = useState();
+  const [amount, setAmount] = useState();
+  const [amountSpentOn, setAmountSpentOn] = useState('');
+  
+  const timeSpentList = {
     WASTED_TIME: 'wasted time',
     OFFICE_WORK: 'office work',
     IMPROVING_SKILLS: 'improving skills',
@@ -24,40 +25,47 @@ function Editor() {
     SPORTS: 'playing games'
   }
 
-  const moneySpentOn = {
-    WASTED_TIME: 'wasted time',
-    OFFICE_WORK: 'office work',
-    IMPROVING_SKILLS: 'improving skills',
-    ROAMING_OUTSIDE: 'roaming outside',
-    OUTSIDE_ON_WORK: 'went out for work',
-    SLEEP: 'sleeping',
-    WORKOUT: 'had a workout',
-    SPORTS: 'playing games'
+  const moneySpentList = {
+    OUTSIDE_FOOD: 'outside food',
+    ONLINE_SHOPPING: 'online shopping',
+    SENT_HOME: 'sent home',
+    HOUSEHOLD_EXPENSES: 'household expenses',
+    ENTERTAINMENT: 'entertainment',
+    DEBT: 'debt',
+    TRAVEL_EXPENSES: 'travel expenses'
   }
 
   const updateTimeSpent = (timeSpent) => {
-    setPlace(timeSpent);
+    setTimeSpentOn(timeSpent);
     setExpand(false);
   };
 
   const updateAmountSpent = (amountSpent) => {
-    setActivity(amountSpent);
+    setAmountSpentOn(amountSpent);
     setExpand(false);
   }
 
   const onSave = () => {
     let data = {};
     if(property === 'time'){
+        if(!timeSpentOn?.length || !time){
+            window.alert('Enter all fields');
+            return;
+        }
         data = {
             property: property,
-            timeSpent: place,
+            timeSpentOn: timeSpentOn,
             time: time,
         }
     }
     else{
+        if(!timeSpentOn?.length || !time){
+            window.alert('Enter all fields');
+            return;
+        }
         data = {
             property: property,
-            amountSpent: activity,
+            amountSpentOn: amountSpentOn,
             amount: amount,
         }
     }
@@ -73,11 +81,11 @@ function Editor() {
         {property === 'time' && 
             <div className='editor-time-container'>
                 <div className="place-container">
-                    <button onClick={() => setExpand(!expand)}>{place.length? timeSpentOn[place]: 'How did you spent your time'}<span>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 40}}/>: <KeyboardArrowUpIcon sx={{fontSize: 40}}/> }</span></button>
+                    <button onClick={() => setExpand(!expand)}>{timeSpentOn? timeSpentList[timeSpentOn]: 'How did you spent your time'}<span>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 40}}/>: <KeyboardArrowUpIcon sx={{fontSize: 40}}/> }</span></button>
                     {expand && 
                         <ul className='place-list'>
-                            {Object.keys(timeSpentOn).map((timeSpent,index) => 
-                                <li key={index} className='list-item' onClick={(e) => updateTimeSpent(timeSpent)}>{timeSpentOn[timeSpent]}</li>
+                            {Object.keys(timeSpentList).map((timeSpent,index) => 
+                                <li key={index} className='list-item' onClick={(e) => updateTimeSpent(timeSpent)}>{timeSpentList[timeSpent]}</li>
                             )}
                         </ul>
                     }
@@ -93,11 +101,11 @@ function Editor() {
         {property === 'money' && 
             <div className='editor-time-container'>
                 <div className="place-container">
-                    <button onClick={() => setExpand(!expand)}>{place.length? timeSpentOn[place]: 'How did you spend your money'}<span>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 40}}/>: <KeyboardArrowUpIcon sx={{fontSize: 40}}/> }</span></button>
+                    <button onClick={() => setExpand(!expand)}>{amountSpentOn? moneySpentList[amountSpentOn]: 'How did you spend your money'}<span>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 40}}/>: <KeyboardArrowUpIcon sx={{fontSize: 40}}/> }</span></button>
                     {expand && 
                         <ul className='place-list'>
-                            {Object.keys(moneySpentOn).map((moneySpent,index) => 
-                                <li key={index} className='list-item' onClick={(e) => updateAmountSpent(moneySpent)}>{moneySpentOn[moneySpent]}</li>
+                            {Object.keys(moneySpentList).map((moneySpent,index) => 
+                                <li key={index} className='list-item' onClick={(e) => updateAmountSpent(moneySpent)}>{moneySpentList[moneySpent]}</li>
                             )}
                         </ul>
                     }
