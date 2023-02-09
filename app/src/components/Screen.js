@@ -33,11 +33,13 @@ function Screen() {
   }
 
   const updateTimeFilter = (filterType) => {
-    setTimeFilter(filterType);
+    let filter = timeOptions[filterType];
+    setTimeFilter(filter);
+    setExpand(false);
 
     dispatch({
       type: actionTypes.UPDATE_TIME_FILTERS,
-      timeFilter: timeFilter
+      timeFilter: filter
     });
   }
 
@@ -53,7 +55,9 @@ function Screen() {
         </div>
 
         <div className="filter-data-container">
-            <button onClick={() => setExpand(!expand)}>Filter Data <span>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 40}}/>: <KeyboardArrowUpIcon sx={{fontSize: 40}}/> }</span></button>
+          <label htmlFor="filter">Filter: </label>
+          <div onClick={() => setExpand(!expand)} >{timeFilter}</div>
+          <span>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 30}}/>: <KeyboardArrowUpIcon sx={{fontSize: 30}}/> }</span>
             {expand && 
               <ul className='time-list'>
                   {Object.keys(timeOptions).map((timePeriod,index) => 

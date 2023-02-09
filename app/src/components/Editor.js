@@ -45,7 +45,7 @@ function Editor() {
     setExpand(false);
   }
 
-  const onSave = () => {
+  const onSave = async () => {
     let data = {};
     if(property === 'time'){
         if(!timeSpentOn?.length || !time){
@@ -59,7 +59,7 @@ function Editor() {
         }
     }
     else{
-        if(!timeSpentOn?.length || !time){
+        if(!amountSpentOn?.length || !amount){
             window.alert('Enter all fields');
             return;
         }
@@ -69,7 +69,19 @@ function Editor() {
             amount: amount,
         }
     }
-    console.log('saving data: ',data)
+
+    await fetch(`/${property}/upload/`,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(() => {
+        setAmount('');
+        setTime('');
+        setAmountSpentOn('');
+        setTimeSpentOn('');
+    });
   }
 
   useEffect(() => {
@@ -98,10 +110,10 @@ function Editor() {
             </div>
         }
 
-        {property === 'money' && 
+        {property === 'amount' && 
             <div className='editor-time-container'>
                 <div className="place-container">
-                    <button onClick={() => setExpand(!expand)}>{amountSpentOn? moneySpentList[amountSpentOn]: 'How did you spend your money'}<span>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 40}}/>: <KeyboardArrowUpIcon sx={{fontSize: 40}}/> }</span></button>
+                    <button onClick={() => setExpand(!expand)}>{amountSpentOn? moneySpentList[amountSpentOn]: 'How did you spend your amount'}<span>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 40}}/>: <KeyboardArrowUpIcon sx={{fontSize: 40}}/> }</span></button>
                     {expand && 
                         <ul className='place-list'>
                             {Object.keys(moneySpentList).map((moneySpent,index) => 
@@ -113,7 +125,7 @@ function Editor() {
 
                 <div className="time-container">
                     <p>Amount spent </p>
-                    <input type="number" placeholder='In Indian Rupees' className='input-minutes' value={time} onChange={(e) => setAmount(e.target.value)}/>
+                    <input type="number" placeholder='In Indian Rupees' className='input-minutes' value={amount} onChange={(e) => setAmount(e.target.value)}/>
                 </div>
             </div>
         }

@@ -30,7 +30,7 @@ function Controls() {
     <div className='controls'>
         <div className="control-btns">
             <button onClick={() => setPropertyType('time')}>Time</button>
-            <button onClick={() => setPropertyType('money')}>Money</button>
+            <button onClick={() => setPropertyType('amount')}>amount</button>
         </div>
         <button className='btn-analytics' onClick={setAnalyticModes}>{!analyticMode? 'View Analytics': 'Add Activity'}</button>
     </div>
