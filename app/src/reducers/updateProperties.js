@@ -4,7 +4,12 @@ const initializer = {
     property: 'time',
     analyticMode: true,
     analyticType: 'data',
-    timeFilter: 'Today'
+    timeFilter: 'Today',
+    currentData: {
+        quantity: '',
+        action: '',
+        id: ''
+    }
 };
 
 const updateProperties = (state=initializer, action) => {
@@ -15,6 +20,10 @@ const updateProperties = (state=initializer, action) => {
 
         case actionTypes.UPDATE_PROPERTY: {
             return {...state, property: action.property};
+        }
+
+        case actionTypes.UPDATE_CURRENT_DATA: {
+            return {...state, currentData: action.currentData};
         }
 
         case actionTypes.UPDATE_ANALYTIC_TYPE: {

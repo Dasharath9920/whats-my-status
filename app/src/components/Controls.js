@@ -36,7 +36,7 @@ function Controls() {
     <div className='controls'>
         <div className="control-btns">
             <button onClick={() => setPropertyType('time')}>Time</button>
-            <button onClick={() => setPropertyType('amount')}>amount</button>
+            <button onClick={() => setPropertyType('amount')}>Amount</button>
         </div>
         <button className='btn-analytics' onClick={setAnalyticModes}>{analyticMode? <AddIcon sx={{fontSize: 30}}/>: <EqualizerIcon sx={{fontSize: 30}}/>}</button>
     </div>

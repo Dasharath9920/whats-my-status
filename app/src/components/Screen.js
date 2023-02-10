@@ -25,13 +25,6 @@ function Screen() {
     ALL_TIME: 'All Time'
   }
 
-  const setAnalytics = (analyticType) => {
-    dispatch({
-      type: actionTypes.UPDATE_ANALYTIC_TYPE,
-      analyticType: analyticType
-    });
-  }
-
   const updateTimeFilter = (filterType) => {
     let filter = timeOptions[filterType];
     setTimeFilter(filter);
@@ -50,10 +43,10 @@ function Screen() {
   return (
     <div className='screen'>
         <div className="filter-data-container">
-          <div className='filter-data-header'>
-            <h2>{timeFilter}</h2>
-            <button className='btn-expand' onClick={() => setExpand(!expand)}>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 30}}/>: <KeyboardArrowUpIcon sx={{fontSize: 30}}/> }</button>
-          </div>
+          <button className='btn-expand' onClick={() => setExpand(!expand)}>
+              <h2>{timeFilter}</h2> 
+              <div>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 35}}/>: <KeyboardArrowUpIcon sx={{fontSize: 35}}/> }</div>
+          </button>
             {expand && 
               <ul className='time-list'>
                   {Object.keys(timeOptions).map((timePeriod,index) => 
@@ -62,12 +55,6 @@ function Screen() {
               </ul>
             }
         </div>
-
-        {analyticMode && <div className="control-btns">
-            <button onClick={() => setAnalytics('data')}>Data</button>
-            <button onClick={() => setAnalytics('graph')}>Graph</button>
-        </div>
-        }
 
         <div className="analytic-container">
           {analyticMode && <Analytics /> }

@@ -19,7 +19,7 @@
 
 .control-btns button{
   height: 40px;
-  width: 200px;
+  width: 150px;
   margin-bottom: 10px;
 }
 
@@ -32,22 +32,15 @@
   border-radius: 50%;
   width: 60px;
   height: 60px;
-  margin-top: 20px;
-}
-
-.filter-data-header{
-  width: 80%;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  margin-bottom: 20px;
+  margin-top: 10px;
 }
 
 .btn-expand{
-  width: 80px;
-  height: 30px;
+  width: 300px;
+  height: 40px;
   border-radius: 5px;
   margin-bottom: 16px;
+  justify-content: space-evenly;
 }
 
 .btn-save{
@@ -97,7 +90,6 @@
 
 .filter-data-container h2{
   font-size: 1.3rem;
-  border-bottom: 1px solid grey;
   width: 150px;
   text-align: center;
   cursor: pointer;
@@ -129,34 +121,85 @@
 
 .analytic-container{
   width: 100%;
-  height: 80%;
+  height: 100%;
   padding: 10px;
 }
 
 .analytics{
   font-family:Georgia, 'Times New Roman', Times, serif;
-  background-color: rgb(240, 240, 240);
-  height: 100%;
-  border-radius: 2px;
-  padding: 10px;
+  height: 540px;
   color: rgb(85, 85, 85);
+  background-color: rgb(240, 240, 240);
+  padding: 10px 0px;
+}
+
+.analytic-btns{
+  position: sticky;
+  z-index: 10;
+  top: 0px;
+  height: 40px;
+  justify-content: space-between;
+}
+
+.analytic-btns button{
+  background-color: rgb(240, 240, 240);
+  font-size: 1rem;
+  color: rgb(62, 62, 62);
+  border-radius: 0;
+  width: 100%;
+  border-bottom: 5px solid lightgrey;
+}
+
+.analytic-btns button:hover{
+  background-color: transparent;
+}
+
+.statistics{
+  margin-top: 10px;
   overflow-y: scroll;
+  position: relative;
+  height: 460px;
+  border-radius: 2px;
+}
+
+.statistics::-webkit-scrollbar {
+  display: none;
 }
 
 .analytic-item{
-  width: 100%;
   padding: 10px;
   border-radius: 5px;
   background-color: white;
-  margin-bottom: 10px;
+  margin: 10px;
   box-shadow: 1px 1px 5px 1px lightgrey;
 }
 
-.analytic-item p{
+.analytic-item-header p{
   font-size: 1.4rem;
   font-weight: bold;
   text-align: center;
   margin-bottom: 10px;
+}
+
+.analytic-item-header h3{
+  width: 150px;
+}
+
+.analytic-item-btns{
+  display: flex;
+  margin-top: 10px;
+  width: 130px;
+  justify-content: space-between;
+  font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
+.analytic-item-btns button{
+  height: 20px;
+  width: 50px;
+  background-color: transparent;
+  color: rgb(64, 64, 64);
+  text-transform: uppercase;
+  font-size: .9rem;
 }
 
 .analytic-item-quantity{
@@ -165,6 +208,12 @@
   justify-content: space-between;
   font-size: .9rem;
   color: rgb(103, 103, 103);
+}
+
+.analytic-item-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .analytic-item-status{
@@ -195,8 +244,7 @@
 
 .editor-btns{
   width: 100%;
-  position: absolute;
-  bottom: 10px;
+  margin-top: 50px;
   left: auto;
   right: auto;
 }

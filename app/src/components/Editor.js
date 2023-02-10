@@ -89,6 +89,10 @@ function Editor() {
         }
     }
 
+    if(myState.currentData.id){
+        data['id'] = myState.currentData.id;
+    }
+
     await fetch(`/${property}/upload/`,{
         method: 'POST',
         headers: {
@@ -103,7 +107,19 @@ function Editor() {
 
   useEffect(() => {
     setProperty(myState.property);
+    resetInputs();
   },[myState.property]);
+
+  useEffect(() => {
+    if(myState.property === 'time'){
+        updateTimeSpent(myState.currentData.action);
+        setTime(myState.currentData.quantity);
+    }
+    else{
+        updateAmountSpent(myState.currentData.action);
+        setAmount(myState.currentData.quantity);
+    }
+  },[myState.currentData]);
 
   return (
     <div className='editor'>
