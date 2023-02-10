@@ -2,10 +2,13 @@ import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import actionTypes from '../reducers/actionTypes';
 
 function Editor() {
 
   const myState = useSelector(state => state.updateProperties);
+  const dispatch = useDispatch();
+
   const [property, setProperty] = useState(myState.property);
   const [expand, setExpand] = useState(false);
   
@@ -13,7 +16,7 @@ function Editor() {
   const [time, setTime] = useState();
   const [amount, setAmount] = useState();
   const [amountSpentOn, setAmountSpentOn] = useState('');
-  
+
   const timeSpentList = {
     WASTED_TIME: 'wasted time',
     OFFICE_WORK: 'office work',
@@ -43,6 +46,22 @@ function Editor() {
   const updateAmountSpent = (amountSpent) => {
     setAmountSpentOn(amountSpent);
     setExpand(false);
+  }
+
+  const resetInputs = () => {
+    setAmount('');
+    setTime('');
+    setAmountSpentOn('');
+    setTimeSpentOn('');
+  }
+
+  const onDiscard = () => {
+    resetInputs();
+
+    dispatch({
+        type: actionTypes.UPDATE_ANALYTIC_MODE,
+        analyticMode: true
+    })
   }
 
   const onSave = async () => {
@@ -77,11 +96,9 @@ function Editor() {
         },
         body: JSON.stringify(data)
     }).then(() => {
-        setAmount('');
-        setTime('');
-        setAmountSpentOn('');
-        setTimeSpentOn('');
+        resetInputs();
     });
+
   }
 
   useEffect(() => {
@@ -131,7 +148,7 @@ function Editor() {
         }
 
         <div className="control-btns editor-btns">
-            <button className='btn-discard'>Discard</button>
+            <button className='btn-discard' onClick={onDiscard}>Discard</button>
             <button className='btn-save' onClick={onSave}>Save</button>
         </div>
     </div>

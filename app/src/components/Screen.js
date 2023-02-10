@@ -49,15 +49,11 @@ function Screen() {
 
   return (
     <div className='screen'>
-        <div className="control-btns">
-            <button onClick={() => setAnalytics('data')}>Data</button>
-            <button onClick={() => setAnalytics('graph')}>Graph</button>
-        </div>
-
         <div className="filter-data-container">
-          <label htmlFor="filter">Filter: </label>
-          <div onClick={() => setExpand(!expand)} >{timeFilter}</div>
-          <span>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 30}}/>: <KeyboardArrowUpIcon sx={{fontSize: 30}}/> }</span>
+          <div className='filter-data-header'>
+            <h2>{timeFilter}</h2>
+            <button className='btn-expand' onClick={() => setExpand(!expand)}>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 30}}/>: <KeyboardArrowUpIcon sx={{fontSize: 30}}/> }</button>
+          </div>
             {expand && 
               <ul className='time-list'>
                   {Object.keys(timeOptions).map((timePeriod,index) => 
@@ -66,6 +62,12 @@ function Screen() {
               </ul>
             }
         </div>
+
+        {analyticMode && <div className="control-btns">
+            <button onClick={() => setAnalytics('data')}>Data</button>
+            <button onClick={() => setAnalytics('graph')}>Graph</button>
+        </div>
+        }
 
         <div className="analytic-container">
           {analyticMode && <Analytics /> }
