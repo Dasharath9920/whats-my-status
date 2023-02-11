@@ -99,12 +99,17 @@ function Editor() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
-    }).then(() => {
+    }).then(async (response) => {
         resetInputs();
 
         dispatch({
             type: actionTypes.UPDATE_ANALYTIC_MODE,
             analyticMode: true
+        })
+
+        dispatch({
+            type: actionTypes.FETCH_DATA,
+            fetchData: true
         })
     });
 

@@ -4,13 +4,15 @@ const initializer = {
     property: 'time',
     analyticMode: true,
     analyticType: 'data',
-    timeFilter: 'Today',
+    timeFilter: 'All Time',
     currentData: {
         quantity: '',
         action: '',
         id: '',
         editMode: false
-    }
+    },
+    data: [],
+    fetchData: true
 };
 
 const updateProperties = (state=initializer, action) => {
@@ -33,6 +35,14 @@ const updateProperties = (state=initializer, action) => {
 
         case actionTypes.UPDATE_TIME_FILTERS: {
             return {...state, timeFilter: action.timeFilter};
+        }
+
+        case actionTypes.UPDATE_DATA: {
+            return {...state, data: action.data};
+        }
+
+        case actionTypes.FETCH_DATA: {
+            return {...state, fetchData: action.fetchData};
         }
 
         default: 

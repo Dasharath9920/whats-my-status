@@ -16,6 +16,11 @@ function Controls() {
         type: actionTypes.UPDATE_PROPERTY,
         property: propertyType
     })
+
+    dispatch({
+      type: actionTypes.FETCH_DATA,
+      fetchData: true
+    })
   }
 
   const setAnalyticModes = () => {
@@ -29,7 +34,7 @@ function Controls() {
 
     dispatch({
         type: actionTypes.UPDATE_ANALYTIC_MODE,
-        analyticMode: true
+        analyticMode: mode
     })
   }
 
