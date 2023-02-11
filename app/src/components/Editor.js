@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import actionTypes from '../reducers/actionTypes';
+import { moneySpentList, timeSpentList } from '../assets/data';
 
 function Editor() {
 
@@ -16,27 +17,6 @@ function Editor() {
   const [time, setTime] = useState();
   const [amount, setAmount] = useState();
   const [amountSpentOn, setAmountSpentOn] = useState('');
-
-  const timeSpentList = {
-    WASTED_TIME: 'wasted time',
-    OFFICE_WORK: 'office work',
-    IMPROVING_SKILLS: 'improving skills',
-    ROAMING_OUTSIDE: 'roaming outside',
-    OUTSIDE_ON_WORK: 'went out for work',
-    SLEEP: 'sleeping',
-    WORKOUT: 'had a workout',
-    SPORTS: 'playing games'
-  }
-
-  const moneySpentList = {
-    OUTSIDE_FOOD: 'outside food',
-    ONLINE_SHOPPING: 'online shopping',
-    SENT_HOME: 'sent home',
-    HOUSEHOLD_EXPENSES: 'household expenses',
-    ENTERTAINMENT: 'entertainment',
-    DEBT: 'debt',
-    TRAVEL_EXPENSES: 'travel expenses'
-  }
 
   const updateTimeSpent = (timeSpent) => {
     setTimeSpentOn(timeSpent);

@@ -5,9 +5,9 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import actionTypes from '../reducers/actionTypes';
 import Analytics from './Analytics';
 import Editor from './Editor';
+import { timeFilters } from '../assets/data';
 
 function Screen() {
-
   const myState = useSelector(state => state.updateProperties);
   const dispatch = useDispatch();
 
@@ -15,18 +15,8 @@ function Screen() {
   const [analyticMode, setAnalyticMode] = useState(myState.analyticMode);
   const [timeFilter, setTimeFilter] = useState(myState.timeFilter);
 
-  const timeOptions = {
-    TODAY: 'Today',
-    LAST_WEEK: 'Last Week',
-    ONE_MONTH: '1 Month',
-    THREE_MONTHS: '3 Months',
-    SIX_MONTHS: '6 Months',
-    LAST_YEAR: 'Last Year',
-    ALL_TIME: 'All Time'
-  }
-
   const updateTimeFilter = (filterType) => {
-    let filter = timeOptions[filterType];
+    let filter = timeFilters[filterType];
     setTimeFilter(filter);
     setExpand(false);
 
@@ -34,6 +24,11 @@ function Screen() {
       type: actionTypes.UPDATE_TIME_FILTERS,
       timeFilter: filter
     });
+
+    dispatch({
+      type: actionTypes.FETCH_DATA,
+      fetchData: true
+    })
   }
 
   useEffect(() => {
@@ -49,8 +44,8 @@ function Screen() {
           </button>
             {expand && 
               <ul className='time-list'>
-                  {Object.keys(timeOptions).map((timePeriod,index) => 
-                    <li key={index} className='list-item' onClick={(e) => updateTimeFilter(timePeriod)}>{timeOptions[timePeriod]}</li>
+                  {Object.keys(timeFilters).map((timePeriod,index) => 
+                    <li key={index} className='list-item' onClick={(e) => updateTimeFilter(timePeriod)}>{timeFilters[timePeriod]}</li>
                   )}
               </ul>
             }
