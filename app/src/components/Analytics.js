@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import DataList from './DataList';
 import { analyticTypes } from '../assets/data';
 import Graph from './Graph';
+import Report from './Report';
 
 function Analytics() {
 
@@ -14,7 +15,7 @@ function Analytics() {
       analyticTypes.forEach(type => document.getElementById(type).style.borderBottomColor = 'transparent');
       document.getElementById(analyticType).style.borderBottomColor = 'orange';
   }
-  
+
   useEffect(() => {
     setAnalytics(myState.analyticType);
   },[])
@@ -33,6 +34,10 @@ function Analytics() {
 
         { analyticType === 'graph' && 
           <Graph />
+        }
+
+        { analyticType === 'report' &&
+          <Report />
         }
     </div>
   )

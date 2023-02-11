@@ -48,7 +48,7 @@ function Controls() {
             <button onClick={() => setPropertyType('time')}>Time</button>
             <button onClick={() => setPropertyType('amount')}>Amount</button>
         </div>
-        <button className='btn-analytics' onClick={setAnalyticModes}>{analyticMode? <AddIcon sx={{fontSize: 30}}/>: <EqualizerIcon sx={{fontSize: 30}}/>}</button>
+        <button className='btn-analytics' onClick={setAnalyticModes}>{analyticMode? <AddIcon sx={{fontSize: 35, color: 'orange'}}/>: <EqualizerIcon sx={{fontSize: 35, color: 'orange'}}/>}</button>
     </div>
   ) 
 }

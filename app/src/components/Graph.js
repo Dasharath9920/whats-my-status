@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector} from 'react-redux';
 import { timeSpentList, moneySpentList, colors } from '../assets/data';
-import { fineTuneTime } from './helper';
+import { fineTuneTime, getColorKeyForTime } from './helper';
 
 function Graph() {
 
@@ -10,15 +10,20 @@ function Graph() {
   const [data, setData] = useState(myState.data);
   const [graphData, setGraphData] = useState({});
 
-  const setBarWidths = (quantity, id, maxQuantity) => {
-    if(myState.property === 'time')
-      quantity /= 60;
+  const setBarWidths = (type, quantity, id, maxQuantity) => {
 
-    let ratio = Math.floor(quantity/maxQuantity*10-0.001);
-    let width = Math.floor((400*quantity)/maxQuantity);
+    let colorKey = Math.max(0,Math.floor(quantity/maxQuantity*10-0.001));
+    let width = Math.max(2,Math.floor((quantity*100)/maxQuantity));
+    if(property === 'time'){
+      if([timeSpentList.IMPROVING_SKILLS,timeSpentList.OFFICE_WORK,timeSpentList.SLEEP,timeSpentList.SPORTS,timeSpentList.WORKOUT].some(item => item === type)){
+        colorKey = 9-colorKey;
+      }
+    }
+    if(colorKey)
+      colorKey--;
 
-    document.getElementById(id).style.width = width + 'px';
-    document.getElementById(id).style.backgroundColor = colors[ratio];
+    document.getElementById(id).style.width = width + '%';
+    document.getElementById(id).style.backgroundColor = colors[colorKey];
   }
 
   const categorizeData = () => {
@@ -30,19 +35,18 @@ function Graph() {
       myState.data.forEach((dataItem) => {
         graphDt[timeSpentList[dataItem[key]]] += dataItem[myState.property];
       })
-      Object.keys(graphDt).forEach((key) => maxQuantity = Math.max(maxQuantity,graphDt[key]/60));
     }
     else{
       Object.keys(moneySpentList).forEach((item) => graphDt[moneySpentList[item]] = 0);
       myState.data.forEach((dataItem) => {
         graphDt[moneySpentList[dataItem[key]]] += dataItem[myState.property];
       })
-      Object.keys(graphDt).forEach((key) => maxQuantity = Math.max(maxQuantity,graphDt[key]));
     }
+    Object.keys(graphDt).forEach((key) => maxQuantity = Math.max(maxQuantity,graphDt[key]));
 
     setGraphData(graphDt);
     setTimeout(() => {
-      Object.keys(graphDt).forEach((key,index) => setBarWidths(graphDt[key],`graph-item-${index+1}`,maxQuantity))
+      Object.keys(graphDt).forEach((key,index) => setBarWidths(key, graphDt[key],`graph-item-${index+1}`,Math.max(1,maxQuantity)))
     })
   }
 

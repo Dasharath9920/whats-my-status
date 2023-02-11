@@ -10,7 +10,6 @@ button{
   align-items: center;
   justify-content: center;
   border: none;
-  background-color: rgb(71, 189, 215);
   font-size: 1.3rem;
   outline: none;
   color: white;
@@ -20,6 +19,10 @@ button{
   border-radius: 5px;
   width: 100%;
   transition: .3s ease all;
+}
+
+button:hover{
+  cursor: pointer;
 }
 
 ul{

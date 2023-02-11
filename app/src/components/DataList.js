@@ -4,14 +4,15 @@ import ScheduleIcon from '@mui/icons-material/Schedule';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import DeleteIcon from '@mui/icons-material/Delete';
 import actionTypes from '../reducers/actionTypes';
-import { moneySpentList, timeSpentList } from '../assets/data';
+import { moneySpentList, timeSpentList, colors } from '../assets/data';
+import { fineTuneTime, getColorKeyForAmount, getColorKeyForTime } from './helper';
 
 function DataList() {
 
-    const myState = useSelector(state => state.updateProperties);
-    const dispatch = useDispatch();
-    const [property, setProperty] = useState(myState.property)
-    const [data, setData] = useState(myState.data);
+  const myState = useSelector(state => state.updateProperties);
+  const dispatch = useDispatch();
+  const [property, setProperty] = useState(myState.property)
+  const [data, setData] = useState(myState.data);
 
   const editData = async (index) => {
     dispatch({
@@ -31,6 +32,9 @@ function DataList() {
   }
 
   const deleteData = async (index) => {
+    if(!window.confirm('Are you sure you want to delete'))
+        return;
+
     let content = {
       id: data[index].id,
       property: myState.property
@@ -59,6 +63,21 @@ function DataList() {
   useEffect(() => {
     setData(myState.data);
     setProperty(myState.property);
+
+    setTimeout(() => {
+      myState.data.forEach((dataItem,index) => {
+          let id = `data-item-status-${index}`;
+          let colorKey = 0;
+          if(myState.property === 'amount'){
+            colorKey = getColorKeyForAmount(dataItem['amount']);
+          }
+          else{
+            colorKey = getColorKeyForTime(dataItem['time'])
+          }
+
+          document.getElementById(id).style.backgroundColor = colors[colorKey];
+        })
+      })
   },[myState.property, myState.data])
 
   return (
@@ -69,7 +88,7 @@ function DataList() {
               let quantity =  property==='time'? (data[property]/60).toFixed(2): data[property];
 
               if(property === 'time')
-                quantity += ' hours';
+                quantity = fineTuneTime(data[property]);
               else
                 quantity = 'Rs. ' + quantity;
 
@@ -82,7 +101,7 @@ function DataList() {
                   <div className='analytic-item-time'>
                     <div className="updated-time"><ScheduleIcon sx={{fontSize: 16}}/> <span>{data['updatedOn']}</span></div>
                   </div>
-                  <div className='analytic-item-status'></div>
+                  <div className='analytic-item-status' id={`data-item-status-${index}`}></div>
                 </div>
                 <div className="analytic-item-btns">
                   <button onClick={() => editData(index)}><BorderColorIcon sx={{fontSize:13, color: 'green', marginRight: '2px'}}/> <span>edit</span></button>
@@ -90,6 +109,9 @@ function DataList() {
                 </div>
               </div>
             })
+        }
+        {
+            !data.length && <h4 className='empty-data'>No results found     . Click add Icon below to add new Entry.</h4>
         }
     </div>
 )}

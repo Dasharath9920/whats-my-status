@@ -122,7 +122,7 @@ function Editor() {
         {property === 'time' && 
             <div className='editor-time-container'>
                 <div className="place-container">
-                    <button onClick={() => setExpand(!expand)}>{timeSpentOn? timeSpentList[timeSpentOn]: 'How did you spent your time'}<span>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 40}}/>: <KeyboardArrowUpIcon sx={{fontSize: 40}}/> }</span></button>
+                    <button className='btn-expand' onClick={() => setExpand(!expand)}>{timeSpentOn? timeSpentList[timeSpentOn]: 'How did you spent your time'}<span>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 40}}/>: <KeyboardArrowUpIcon sx={{fontSize: 40}}/> }</span></button>
                     {expand && 
                         <ul className='place-list'>
                             {Object.keys(timeSpentList).map((timeSpent,index) => 
@@ -142,7 +142,7 @@ function Editor() {
         {property === 'amount' && 
             <div className='editor-time-container'>
                 <div className="place-container">
-                    <button onClick={() => setExpand(!expand)}>{amountSpentOn? moneySpentList[amountSpentOn]: 'How did you spend your amount'}<span>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 40}}/>: <KeyboardArrowUpIcon sx={{fontSize: 40}}/> }</span></button>
+                    <button className='btn-expand' onClick={() => setExpand(!expand)}>{amountSpentOn? moneySpentList[amountSpentOn]: 'How did you spend your amount'}<span>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 40}}/>: <KeyboardArrowUpIcon sx={{fontSize: 40}}/> }</span></button>
                     {expand && 
                         <ul className='place-list'>
                             {Object.keys(moneySpentList).map((moneySpent,index) => 
