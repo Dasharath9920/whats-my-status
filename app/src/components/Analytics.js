@@ -55,7 +55,8 @@ function Analytics() {
       currentData: {
         quantity: property === 'time'? data[index].time: data[index].amount,
         action: property === 'time'? data[index].timeSpentOn: data[index].amountSpentOn,
-        id: data[index].id
+        id: data[index].id,
+        editMode: true
       }
     })
 
@@ -93,8 +94,9 @@ function Analytics() {
   },[myState.analyticType, myState.timeFilter, myState.property]);
 
   useEffect(() => {
-    fetchData();
-  },[myState.timeFilter, myState.property])
+    if(myState.analyticMode)
+      fetchData();
+  },[myState.timeFilter, myState.property, myState.analyticMode])
 
   return (
     <div className='analytics'>
@@ -107,7 +109,7 @@ function Analytics() {
           {
             data.map((data,index) => {
               let investedIn = property === 'time'? timeSpentList[data['timeSpentOn']]: moneySpentList[data['amountSpentOn']];
-              let quantity =  (data[property]/60).toFixed(2);
+              let quantity =  property==='time'? (data[property]/60).toFixed(2): data[property];
 
               if(property === 'time')
                 quantity += ' hours';

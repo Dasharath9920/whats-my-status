@@ -89,7 +89,7 @@ function Editor() {
         }
     }
 
-    if(myState.currentData.id){
+    if(myState.currentData.editMode){
         data['id'] = myState.currentData.id;
     }
 
@@ -101,16 +101,19 @@ function Editor() {
         body: JSON.stringify(data)
     }).then(() => {
         resetInputs();
+
+        dispatch({
+            type: actionTypes.UPDATE_ANALYTIC_MODE,
+            analyticMode: true
+        })
     });
 
   }
 
   useEffect(() => {
-    setProperty(myState.property);
-    resetInputs();
-  },[myState.property]);
+    if(!myState.currentData.editMode)
+        return;
 
-  useEffect(() => {
     if(myState.property === 'time'){
         updateTimeSpent(myState.currentData.action);
         setTime(myState.currentData.quantity);
@@ -120,6 +123,14 @@ function Editor() {
         setAmount(myState.currentData.quantity);
     }
   },[myState.currentData]);
+
+  useEffect(() => {
+    if(myState.currentData.editMode)
+        return;
+
+    setProperty(myState.property);
+    resetInputs();
+  },[myState.property, myState.analyticMode]);
 
   return (
     <div className='editor'>

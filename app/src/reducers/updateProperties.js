@@ -8,7 +8,8 @@ const initializer = {
     currentData: {
         quantity: '',
         action: '',
-        id: ''
+        id: '',
+        editMode: false
     }
 };
 

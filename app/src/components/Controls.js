@@ -23,8 +23,13 @@ function Controls() {
     setAnalyticMode(mode);
 
     dispatch({
+      type: actionTypes.UPDATE_CURRENT_DATA,
+      currentData: {...myState.currentData, editMode: false}
+    });
+
+    dispatch({
         type: actionTypes.UPDATE_ANALYTIC_MODE,
-        analyticMode: mode
+        analyticMode: true
     })
   }
 
@@ -40,7 +45,7 @@ function Controls() {
         </div>
         <button className='btn-analytics' onClick={setAnalyticModes}>{analyticMode? <AddIcon sx={{fontSize: 30}}/>: <EqualizerIcon sx={{fontSize: 30}}/>}</button>
     </div>
-  )
+  ) 
 }
 
 export default Controls;

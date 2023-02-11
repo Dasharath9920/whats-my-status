@@ -42,7 +42,7 @@ function Screen() {
 
   return (
     <div className='screen'>
-        <div className="filter-data-container">
+        {myState.analyticMode && <div className="filter-data-container">
           <button className='btn-expand' onClick={() => setExpand(!expand)}>
               <h2>{timeFilter}</h2> 
               <div>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 35}}/>: <KeyboardArrowUpIcon sx={{fontSize: 35}}/> }</div>
@@ -55,6 +55,7 @@ function Screen() {
               </ul>
             }
         </div>
+        }
 
         <div className="analytic-container">
           {analyticMode && <Analytics /> }
