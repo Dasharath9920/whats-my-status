@@ -170,3 +170,23 @@ export const getSafeZoneForAmountSpent = (type, timeFilter, entries) => {
 
     return safeZone * totalDays * 2;
 }
+
+export const getCategorizedData = (data, property) => {
+    let categorizedData = {};
+    const key = property + 'SpentOn';
+
+    if(property === 'time'){
+      Object.keys(timeSpentList).forEach((item) => categorizedData[timeSpentList[item]] = 0);
+      data.forEach((dataItem) => {
+        categorizedData[timeSpentList[dataItem[key]]] += dataItem[property];
+      })
+    }
+    else{
+      Object.keys(moneySpentList).forEach((item) => categorizedData[moneySpentList[item]] = 0);
+      data.forEach((dataItem) => {
+        categorizedData[moneySpentList[dataItem[key]]] += dataItem[property];
+      })
+    }
+
+    return categorizedData;
+}

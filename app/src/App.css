@@ -9,7 +9,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 10px;
+  margin: 0px 10px;
   padding: 10px;
   background-color: orange;
 }
@@ -48,11 +48,11 @@
 }
 
 .btn-save{
-  border-bottom: 5px solid rgb(59, 167, 59);
+  border: 1px solid rgb(59, 167, 59);
 }
 
 .btn-discard{
-  border-bottom: 5px solid rgb(223, 131, 131);
+  border: 1px solid rgb(223, 131, 131);
 }
 
 .btn-discard:hover{
@@ -66,7 +66,7 @@
 }
 
 .screen{
-  height: 650px;
+  height: 640px;
 }
 
 .editor-time-container{
@@ -277,7 +277,7 @@
   margin: 0px 10px;
 }
 
-.report-container{
+.report-container, .graph-container{
   padding: 10px;
   background-color: white;
   border: 10px solid rgb(240, 240, 240);
@@ -318,4 +318,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.chart{
+  height: 480px;
 }

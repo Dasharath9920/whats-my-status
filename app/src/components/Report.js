@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector} from 'react-redux';
 import { timeSpentList, moneySpentList, colors } from '../assets/data';
-import { fineTuneTime, getColorKeyForTime, getNumberOfDaysFromFirstEntry, getSafeZoneForAmountSpent, getSafeZoneForTimeSpent } from './helper';
+import { fineTuneTime, getCategorizedData, getColorKeyForTime, getNumberOfDaysFromFirstEntry, getSafeZoneForAmountSpent, getSafeZoneForTimeSpent } from './helper';
 
 function Report() {
-
   const myState = useSelector(state => state.updateProperties);
   const [property, setProperty] = useState(myState.property)
   const [data, setData] = useState(myState.data);
@@ -34,22 +33,7 @@ function Report() {
   }
 
   const categorizeData = () => {
-    let graphDt = {};
-    const key = myState.property + 'SpentOn';
-
-    if(myState.property === 'time'){
-      Object.keys(timeSpentList).forEach((item) => graphDt[timeSpentList[item]] = 0);
-      myState.data.forEach((dataItem) => {
-        graphDt[timeSpentList[dataItem[key]]] += dataItem[myState.property];
-      })
-    }
-    else{
-      Object.keys(moneySpentList).forEach((item) => graphDt[moneySpentList[item]] = 0);
-      myState.data.forEach((dataItem) => {
-        graphDt[moneySpentList[dataItem[key]]] += dataItem[myState.property];
-      })
-    }
-
+    let graphDt = getCategorizedData(myState.data, myState.property);
     setGraphData(graphDt);
     setTimeout(() => {
       Object.keys(graphDt).forEach((key,index) => setBarWidths(key, graphDt[key],`report-item-${index+1}`))
