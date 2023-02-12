@@ -23,7 +23,7 @@ export const timeSpentList = {
 export const timeFilters = {
     TODAY: 'Today',
     LAST_WEEK: 'Last Week',
-    ONE_MONTH: '1 Month',
+    LAST_MONTH: 'Last Month',
     THREE_MONTHS: '3 Months',
     SIX_MONTHS: '6 Months',
     LAST_YEAR: 'Last Year',

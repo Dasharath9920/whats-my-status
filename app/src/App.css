@@ -277,19 +277,19 @@
   margin: 0px 10px;
 }
 
-.graph-container{
+.report-container{
   padding: 10px;
   background-color: white;
   border: 10px solid rgb(240, 240, 240);
 }
 
-.graph-item{
+.report-item{
   margin-bottom: 5px;
   padding: 6px;
   border-radius: 5px;
 }
 
-.graph-item-header{
+.report-item-header{
   font-size: 1rem;
   display: flex;
   align-items: center;

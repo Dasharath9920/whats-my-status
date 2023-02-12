@@ -1,3 +1,5 @@
+import { moneySpentList,timeFilters, timeSpentList } from "../assets/data";
+
 export const fineTuneTime = (minutes) => {
     let years = Math.floor(minutes/525600);
     minutes %= 525600;
@@ -70,4 +72,101 @@ export const getColorKeyForTime = (minutes) => {
     else
         colorKey = 8;
     return colorKey;
+}
+
+export const getNumberOfDaysFromFirstEntry = (entries) => {
+    let numberOfDays = 0;
+    let today = new Date();
+    entries.forEach((entry) => {
+        let date = new Date(entry['updatedOn']);
+        let diff = Math.ceil((today - date) / (60 * 60 * 24 * 1000));
+        numberOfDays = Math.max(numberOfDays,diff);
+    })
+    return numberOfDays;
+}
+
+export const getNumberOfDaysFromTimeFilter = (timeFilter, entries) => {
+    let days = 1;
+    let maxDays = getNumberOfDaysFromFirstEntry(entries);
+    switch(timeFilter){
+        case timeFilters.TODAY:
+            days = 1;
+            break;
+        case timeFilters.LAST_WEEK:
+            days = 7;
+            break;
+        case timeFilters.LAST_MONTH: 
+            days = 30;
+            break;
+        case timeFilters.THREE_MONTHS:
+            days = 90;
+            break;
+        case timeFilters.SIX_MONTHS:
+            days = 180;
+            break;
+        case timeFilters.LAST_YEAR:
+            days = 365;
+            break;
+        default:
+            days = maxDays;
+    }
+
+    return Math.min(days, maxDays);
+}
+
+export const getSafeZoneForTimeSpent = (type,timeFilter, entries) => {
+    let safeZone = 100;
+    let totalDays = Math.max(1,getNumberOfDaysFromTimeFilter(timeFilter, entries));
+    switch(type){
+        case timeSpentList.IMPROVING_SKILLS:
+            safeZone = 120;
+            break;
+        case timeSpentList.OFFICE_WORK:
+            safeZone = 240;
+            break;
+        case timeSpentList.OUTSIDE_ON_WORK:
+            safeZone = 180;
+            break;
+        case timeSpentList.ROAMING_OUTSIDE:
+            safeZone = 120;
+            break;
+        case timeSpentList.SLEEP:
+            safeZone = 480;
+            break;
+        case timeSpentList.SPORTS:
+            safeZone = 120;
+            break;
+        case timeSpentList.WASTED_TIME:
+            safeZone = 60;
+            break;
+        default:
+            safeZone = 30;
+    }
+
+    return safeZone * totalDays;
+}
+
+export const getSafeZoneForAmountSpent = (type, timeFilter, entries) => {
+    let safeZone = 500;
+    let totalDays = Math.max(1,getNumberOfDaysFromTimeFilter(timeFilter, entries));
+
+    switch(type){
+        case moneySpentList.DEBT:
+            safeZone = 1300;
+            break;
+        case moneySpentList.ENTERTAINMENT:
+        case moneySpentList.HOUSEHOLD_EXPENSES:
+        case moneySpentList.OUTSIDE_FOOD:
+        case moneySpentList.PERSONAL:
+        case moneySpentList.TRAVEL_EXPENSES:
+            safeZone = 100;
+            break;
+        case moneySpentList.ONLINE_SHOPPING:
+            safeZone = 60;
+            break;
+        default:
+            safeZone = 300;
+    }
+
+    return safeZone * totalDays * 2;
 }
