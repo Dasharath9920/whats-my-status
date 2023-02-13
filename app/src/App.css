@@ -180,7 +180,7 @@
 }
 
 .analytic-item-header p{
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
   text-transform: capitalize;
@@ -216,7 +216,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: .95rem;
+  font-size: .9rem;
 }
 
 .analytic-item-status{
@@ -232,7 +232,7 @@
   justify-content: space-between;
   font-weight: bold;
   margin-top: 10px;
-  width: 90px;
+  width: 125px;
 }
 
 .editor{

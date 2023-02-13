@@ -154,8 +154,10 @@ export const getSafeZoneForAmountSpent = (type, timeFilter, entries) => {
         case moneySpentList.DEBT:
             safeZone = 1300;
             break;
-        case moneySpentList.ENTERTAINMENT:
         case moneySpentList.HOUSEHOLD_EXPENSES:
+            safeZone = 200;
+            break;
+        case moneySpentList.ENTERTAINMENT:
         case moneySpentList.OUTSIDE_FOOD:
         case moneySpentList.PERSONAL:
         case moneySpentList.TRAVEL_EXPENSES:

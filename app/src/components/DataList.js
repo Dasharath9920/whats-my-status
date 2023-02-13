@@ -86,6 +86,7 @@ function DataList() {
             data.map((data,index) => {
               let investedIn = property === 'time'? timeSpentList[data['timeSpentOn']]: moneySpentList[data['amountSpentOn']];
               let quantity =  property==='time'? (data[property]/60).toFixed(2): data[property];
+              let date = new Date(data['updatedOn']);
 
               if(property === 'time')
                 quantity = fineTuneTime(data[property]);
@@ -99,7 +100,7 @@ function DataList() {
                 </div>
                 <div className='analytic-item-quantity'>
                   <div className='analytic-item-time'>
-                    <div className="updated-time"><ScheduleIcon sx={{fontSize: 16}}/> <span>{data['updatedOn']}</span></div>
+                    <div className="updated-time"><ScheduleIcon sx={{fontSize: 16, marginBottom: 0.3}}/> <span>{date.toDateString()}</span></div>
                   </div>
                   <div className='analytic-item-status' id={`data-item-status-${index}`}></div>
                 </div>
