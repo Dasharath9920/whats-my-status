@@ -16,7 +16,7 @@ export const timeSpentList = {
     ROAMING_OUTSIDE: 'roaming outside',
     OUTSIDE_ON_WORK: 'went out for work',
     SLEEP: 'sleeping',
-    WORKOUT: 'had a workout',
+    WORKOUT: 'Workout',
     SPORTS: 'playing games'
 }
 
@@ -42,3 +42,25 @@ export const colors = ['rgb(71, 173, 49)',
                     ]
 
 export const analyticTypes = ['data','graph','report'];
+
+export const legendDataForTime = {
+    A: 'Wasted time',
+    B: 'Office work',
+    C: 'improving skills',
+    D: 'Roaming outside',
+    E: 'Went out for work',
+    F: 'Sleeping',
+    G: 'Workout',
+    H: 'Playing games'
+}
+
+export const legendDataForAmount = {
+    A: 'Outside food',
+    B: 'Online shopping',
+    C: 'Sent home',
+    D: 'Household expenses',
+    E: 'Entertainment',
+    F: 'Debt',
+    G: 'Travel expenses',
+    H: 'Personal'
+}
