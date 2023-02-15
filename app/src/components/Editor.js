@@ -115,10 +115,7 @@ function Editor() {
 
     setProperty(myState.property);
     resetInputs();
-
-    document.getElementById('btn-expand')?.addEventListener('focusout',function(){
     setExpand(false);
-    })
   },[myState.property, myState.analyticMode]);
 
   return (
@@ -126,7 +123,7 @@ function Editor() {
         {property === 'time' && 
             <div className='editor-time-container'>
                 <div className="place-container">
-                    <button className='btn-expand' id='btn-expand' onClick={() => setExpand(!expand)}>{timeSpentOn? timeSpentList[timeSpentOn]: 'How did you spent your time'}<span>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 40}}/>: <KeyboardArrowUpIcon sx={{fontSize: 40}}/> }</span></button>
+                    <button className='btn-expand' onClick={() => setExpand(!expand)}>{timeSpentOn? timeSpentList[timeSpentOn]: 'How did you spent your time'}<span>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 40}}/>: <KeyboardArrowUpIcon sx={{fontSize: 40}}/> }</span></button>
                     {expand && 
                         <ul className='place-list'>
                             {Object.keys(timeSpentList).map((timeSpent,index) => 
@@ -146,7 +143,7 @@ function Editor() {
         {property === 'amount' && 
             <div className='editor-time-container'>
                 <div className="place-container">
-                    <button className='btn-expand' id='btn-expand' onClick={() => setExpand(!expand)}>{amountSpentOn? moneySpentList[amountSpentOn]: 'How did you spend your amount'}<span>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 40}}/>: <KeyboardArrowUpIcon sx={{fontSize: 40}}/> }</span></button>
+                    <button className='btn-expand' onClick={() => setExpand(!expand)}>{amountSpentOn? moneySpentList[amountSpentOn]: 'How did you spend your amount'}<span>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 40}}/>: <KeyboardArrowUpIcon sx={{fontSize: 40}}/> }</span></button>
                     {expand && 
                         <ul className='place-list'>
                             {Object.keys(moneySpentList).map((moneySpent,index) => 
@@ -158,7 +155,7 @@ function Editor() {
 
                 <div className="time-container">
                     <p>Amount spent </p>
-                    <input type="number" placeholder='In Indian Rupees' className='input-minutes' value={amount} onChange={(e) => setAmount(e.target.value)}/>
+                    <input type="number" placeholder='In Rupees' className='input-minutes' value={amount} onChange={(e) => setAmount(e.target.value)}/>
                 </div>
             </div>
         }

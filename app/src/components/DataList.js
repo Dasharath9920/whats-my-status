@@ -4,7 +4,7 @@ import ScheduleIcon from '@mui/icons-material/Schedule';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import DeleteIcon from '@mui/icons-material/Delete';
 import actionTypes from '../reducers/actionTypes';
-import { moneySpentList, timeSpentList, colors } from '../assets/data';
+import { moneySpentList, timeSpentList, colors, timeFilters } from '../assets/data';
 import { fineTuneTime, getColorKeyForAmount, getColorKeyForTime } from './helper';
 
 function DataList() {
@@ -69,12 +69,11 @@ function DataList() {
           let id = `data-item-status-${index}`;
           let colorKey = 0;
           if(myState.property === 'amount'){
-            colorKey = getColorKeyForAmount(dataItem['amount']);
+            colorKey = getColorKeyForAmount(dataItem['amountSpentOn'],timeFilters.TODAY,myState.data,dataItem['amount']);
           }
           else{
-            colorKey = getColorKeyForTime(dataItem['time'])
+            colorKey = getColorKeyForTime(dataItem['timeSpentOn'],timeFilters.TODAY,myState.data,dataItem['time']);
           }
-
           document.getElementById(id).style.backgroundColor = colors[colorKey];
         })
       })
