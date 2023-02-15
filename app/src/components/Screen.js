@@ -33,12 +33,15 @@ function Screen() {
 
   useEffect(() => {
     setAnalyticMode(myState.analyticMode);
+    document.getElementById('btn-expand')?.addEventListener('focusout',function(){
+      setExpand(false);
+    })
   },[myState.analyticMode])
 
   return (
     <div className='screen'>
         {myState.analyticMode && <div className="filter-data-container">
-          <button className='btn-expand' onClick={() => setExpand(!expand)}>
+          <button className='btn-expand' id='btn-expand' onClick={() => setExpand(!expand)}>
               <h2>{timeFilter}</h2> 
               <div>{!expand? <KeyboardArrowDownIcon sx={{fontSize: 35}}/>: <KeyboardArrowUpIcon sx={{fontSize: 35}}/> }</div>
           </button>
