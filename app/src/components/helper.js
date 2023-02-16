@@ -44,7 +44,6 @@ export const getColorKeyForAmount = (type,timeFilter,data,amount) => {
 
 export const getColorKeyForTime = (type,timeFilter,data,minutes) => {
     let safeZone = getSafeZoneForTimeSpent(type, timeFilter, data);
-    console.log(type,minutes,safeZone)
     let colorKey = Math.max(0,Math.min(9,Math.floor((minutes/(safeZone*1.5))*10-0.001)));
     
     if([timeSpentList.IMPROVING_SKILLS,timeSpentList.OFFICE_WORK,timeSpentList.SLEEP,timeSpentList.SPORTS,timeSpentList.WORKOUT].some(item => item === timeSpentList[type])){

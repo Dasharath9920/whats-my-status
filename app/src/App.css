@@ -330,16 +330,32 @@
 }
 
 .chart{
-  height: 350px;
-}
-
-.legend-container{
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  margin: 20px 10px;
-}
-
-.legend-item{
+  height: 470px;
   display: flex;
-  margin: 2px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chart-footer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.3rem;
+  width: 85%;
+  padding: 40px 20px;
+}
+
+.chart-footer button{
+  width: 10px;
+  height: 50px;
+  background-color: white;
+  color: orange;
+  padding: 2px 10px;
+}
+
+.chart-footer p{
+  width: 75%;
+  text-align: center;
+  padding-bottom: 2px;
+  border-bottom: 1px solid rgb(255, 213, 135);
 }

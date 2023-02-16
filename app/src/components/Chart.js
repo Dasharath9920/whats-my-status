@@ -1,38 +1,58 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { legendDataForAmount, legendDataForTime } from '../assets/data';
-import { getCategorizedData } from './helper';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { moneySpentList, timeSpentList } from '../assets/data';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 function Chart() {
 
     const myState = useSelector(state => state.updateProperties);
     const [chartData, setChartData] = useState([]);
-    let spentOn = myState.property === 'time'? legendDataForTime: legendDataForAmount;;
+    const [dataIndex, setDataIndex] = useState(0);
+    const [spentOn, setSpentOn] = useState('');
 
     const fillChartData = () => {
-        let data = getCategorizedData(myState.data, myState.property);
         let dataForChart = []
 
-        Object.keys(data).forEach((key,index) => {
+        myState.data.forEach((data) => {
             if(myState.property === 'time'){
-                dataForChart.push({
-                    name: Object.keys(spentOn)[index],
-                    Hours: myState.property === 'time'? data[key]/60: data[key]
-                })
+                if(Object.keys(timeSpentList)[dataIndex] === data['timeSpentOn']){
+                    dataForChart.push({
+                        name: data['updatedOn'],
+                        Hours: (data['time']/60).toFixed(2)
+                    })
+                }
             }
             else{
-                dataForChart.push({
-                    name: Object.keys(spentOn)[index],
-                    Amount: myState.property === 'time'? data[key]/60: data[key]
-                })
+                if(Object.keys(moneySpentList)[dataIndex] === data['amountSpentOn']){
+                    dataForChart.push({
+                        name: data['updatedOn'],
+                        Amount: data['amount']
+                    })
+                }
             }
         })
-
+        dataForChart.reverse();
         setChartData(dataForChart);
     }
 
+    const updateIndex = (inc) => {
+        let newIndex = (dataIndex + inc + 8) % 8;
+        setDataIndex(newIndex);
+        fillChartData();
+
+        if(myState.property === 'time'){
+            let key = Object.keys(timeSpentList)[dataIndex];
+            setSpentOn(timeSpentList[key]);
+        } else{
+            let key = Object.keys(moneySpentList)[dataIndex];
+            setSpentOn(moneySpentList[key]);
+        }
+    }
+
     useEffect(() => {
+        updateIndex(0);
         fillChartData();
     },[myState.data]);
 
@@ -54,19 +74,13 @@ function Chart() {
                     <XAxis dataKey="name"/>
                     <YAxis />
                     <Tooltip />
-                    <Legend />
                     <Line type="monotone" dataKey={myState.property === 'time'? 'Hours': 'Amount'} stroke="#8884d8" activeDot={{ r: 8 }} />
                 </LineChart>
             </ResponsiveContainer>
-            <div className='legend-container'>
-                {
-                    Object.keys(spentOn).map((key,index) => {
-                        return <div className="legend-item">
-                            <h4>{key} - &nbsp;</h4>
-                            <p>{spentOn[key]}</p>
-                        </div>
-                    })
-                }
+            <div className='chart-footer'>
+                <button onClick={() => updateIndex(1)}><ChevronLeftIcon sx={{fontSize: 45}}/></button>
+                <p>{spentOn}</p>
+                <button onClick={() => updateIndex(-1)}><ChevronRightIcon sx={{fontSize: 45}}/></button>
             </div>
         </div>
     )

@@ -1,23 +1,23 @@
 export const moneySpentList = {
-    OUTSIDE_FOOD: 'outside food',
-    ONLINE_SHOPPING: 'online shopping',
-    SENT_HOME: 'sent home',
-    HOUSEHOLD_EXPENSES: 'household expenses',
-    ENTERTAINMENT: 'entertainment',
-    DEBT: 'debt',
-    TRAVEL_EXPENSES: 'travel expenses',
-    PERSONAL: 'personal'
+    OUTSIDE_FOOD: 'Outside food',
+    ONLINE_SHOPPING: 'Online shopping',
+    SENT_HOME: 'Sent home',
+    HOUSEHOLD_EXPENSES: 'Household expenses',
+    ENTERTAINMENT: 'Entertainment',
+    DEBT: 'Debt',
+    TRAVEL_EXPENSES: 'Travel expenses',
+    PERSONAL: 'Personal'
 }
 
 export const timeSpentList = {
-    WASTED_TIME: 'wasted time',
-    OFFICE_WORK: 'office work',
-    IMPROVING_SKILLS: 'improving skills',
-    ROAMING_OUTSIDE: 'roaming outside',
-    OUTSIDE_ON_WORK: 'went out for work',
-    SLEEP: 'sleeping',
+    WASTED_TIME: 'Wasted time',
+    OFFICE_WORK: 'Office work',
+    IMPROVING_SKILLS: 'Improving skills',
+    ROAMING_OUTSIDE: 'Roaming outside',
+    OUTSIDE_ON_WORK: 'Went out for work',
+    SLEEP: 'Sleeping',
     WORKOUT: 'Workout',
-    SPORTS: 'playing games'
+    SPORTS: 'Playing games'
 }
 
 export const timeFilters = {
@@ -42,25 +42,3 @@ export const colors = ['rgb(71, 173, 49)',
                     ]
 
 export const analyticTypes = ['data','graph','report'];
-
-export const legendDataForTime = {
-    A: 'Wasted time',
-    B: 'Office work',
-    C: 'improving skills',
-    D: 'Roaming outside',
-    E: 'Went out for work',
-    F: 'Sleeping',
-    G: 'Workout',
-    H: 'Playing games'
-}
-
-export const legendDataForAmount = {
-    A: 'Outside food',
-    B: 'Online shopping',
-    C: 'Sent home',
-    D: 'Household expenses',
-    E: 'Entertainment',
-    F: 'Debt',
-    G: 'Travel expenses',
-    H: 'Personal'
-}
