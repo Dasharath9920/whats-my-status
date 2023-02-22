@@ -12,12 +12,12 @@ function Chart() {
     const [dataIndex, setDataIndex] = useState(0);
     const [spentOn, setSpentOn] = useState('');
 
-    const fillChartData = () => {
+    const fillChartData = (index) => {
         let dataForChart = []
 
         myState.data.forEach((data) => {
             if(myState.property === 'time'){
-                if(Object.keys(timeSpentList)[dataIndex] === data['timeSpentOn']){
+                if(Object.keys(timeSpentList)[index] === data['timeSpentOn']){
                     dataForChart.push({
                         name: data['updatedOn'],
                         Hours: (data['time']/60).toFixed(2)
@@ -25,7 +25,7 @@ function Chart() {
                 }
             }
             else{
-                if(Object.keys(moneySpentList)[dataIndex] === data['amountSpentOn']){
+                if(Object.keys(moneySpentList)[index] === data['amountSpentOn']){
                     dataForChart.push({
                         name: data['updatedOn'],
                         Amount: data['amount']
@@ -40,20 +40,20 @@ function Chart() {
     const updateIndex = (inc) => {
         let newIndex = (dataIndex + inc + 8) % 8;
         setDataIndex(newIndex);
-        fillChartData();
+        fillChartData(newIndex);
 
         if(myState.property === 'time'){
-            let key = Object.keys(timeSpentList)[dataIndex];
+            let key = Object.keys(timeSpentList)[newIndex];
             setSpentOn(timeSpentList[key]);
         } else{
-            let key = Object.keys(moneySpentList)[dataIndex];
+            let key = Object.keys(moneySpentList)[newIndex];
             setSpentOn(moneySpentList[key]);
         }
     }
 
     useEffect(() => {
         updateIndex(0);
-        fillChartData();
+        fillChartData(0);
     },[myState.data]);
 
     return (
@@ -78,9 +78,9 @@ function Chart() {
                 </LineChart>
             </ResponsiveContainer>
             <div className='chart-footer'>
-                <button onClick={() => updateIndex(1)}><ChevronLeftIcon sx={{fontSize: 45}}/></button>
+                <button onClick={() => updateIndex(-1)}><ChevronLeftIcon sx={{fontSize: 45}}/></button>
                 <p>{spentOn}</p>
-                <button onClick={() => updateIndex(-1)}><ChevronRightIcon sx={{fontSize: 45}}/></button>
+                <button onClick={() => updateIndex(1)}><ChevronRightIcon sx={{fontSize: 45}}/></button>
             </div>
         </div>
     )
