@@ -6,6 +6,7 @@ import actionTypes from '../reducers/actionTypes';
 import Analytics from './Analytics';
 import Editor from './Editor';
 import { timeFilters } from '../assets/data';
+import Toast from './Toast';
 
 function Screen() {
   const myState = useSelector(state => state.updateProperties);
@@ -38,6 +39,7 @@ function Screen() {
 
   return (
     <div className='screen'>
+        <Toast />
         {myState.analyticMode && <div className="filter-data-container">
           <button className='btn-expand' onClick={() => setExpand(!expand)}>
               <h2>{timeFilter}</h2> 

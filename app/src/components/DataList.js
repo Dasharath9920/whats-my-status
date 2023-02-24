@@ -54,9 +54,17 @@ function DataList() {
         type: actionTypes.FETCH_DATA,
         fetchData: true
       })
+
+      dispatch({
+        type: actionTypes.TOAST_MESSAGE,
+        toastMessage: 'Data deleted successfully'
+      })
     })
     .catch(() => {
-      console.log('something went wrong');
+      dispatch({
+        type: actionTypes.TOAST_MESSAGE,
+        toastMessage: 'Something went wrong'
+    })
     })
   }
 

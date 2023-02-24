@@ -35,7 +35,7 @@ function Editor() {
     setTimeSpentOn('');
   }
 
-  const onDiscard = () => {
+  const onCancel = () => {
     resetInputs();
 
     dispatch({
@@ -83,13 +83,13 @@ function Editor() {
         resetInputs();
 
         dispatch({
-            type: actionTypes.UPDATE_ANALYTIC_MODE,
-            analyticMode: true
+            type: actionTypes.FETCH_DATA,
+            fetchData: true
         })
 
         dispatch({
-            type: actionTypes.FETCH_DATA,
-            fetchData: true
+            type: actionTypes.TOAST_MESSAGE,
+            toastMessage: 'Data saved successfully'
         })
     });
 
@@ -161,7 +161,7 @@ function Editor() {
         }
 
         <div className="control-btns editor-btns">
-            <button className='btn-discard' onClick={onDiscard}>Discard</button>
+            <button className='btn-discard' onClick={onCancel}>Cancel</button>
             <button className='btn-save' onClick={onSave}>Save</button>
         </div>
     </div>

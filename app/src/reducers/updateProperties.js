@@ -12,7 +12,8 @@ const initializer = {
         editMode: false
     },
     data: [],
-    fetchData: true
+    fetchData: true,
+    toastMessage: ''
 };
 
 const updateProperties = (state=initializer, action) => {
@@ -35,6 +36,10 @@ const updateProperties = (state=initializer, action) => {
 
         case actionTypes.UPDATE_TIME_FILTERS: {
             return {...state, timeFilter: action.timeFilter};
+        }
+
+        case actionTypes.TOAST_MESSAGE: {
+            return {...state, toastMessage: action.toastMessage};
         }
 
         case actionTypes.UPDATE_DATA: {

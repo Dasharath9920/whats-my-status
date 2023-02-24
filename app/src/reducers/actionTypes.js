@@ -5,7 +5,8 @@ const actionTypes = {
     'UPDATE_TIME_FILTERS': 'update_time_filters',
     'UPDATE_CURRENT_DATA': 'update_current_data',
     'UPDATE_DATA': 'update data',
-    'FETCH_DATA': 'fetch data'
+    'FETCH_DATA': 'fetch data',
+    'TOAST_MESSAGE': 'toast message'
 }
 
 export default actionTypes;
