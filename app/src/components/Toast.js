@@ -7,17 +7,17 @@ function Toast() {
 
     useEffect(() => {
         if(myState.toastMessage.length){
-            document.getElementById('toast-container').style.display = 'block';
+            document.getElementById('toast-message').style.display = 'block';
 
             setTimeout(() => {
-                document.getElementById('toast-container').style.display = 'none';
+                document.getElementById('toast-message').style.display = 'none';
             },3000);
         }
     },[myState.toastMessage]);
 
   return (
-    <div id="toast-container">
-        <p className='toast-message'>{myState.toastMessage}</p>
+    <div className="toast_container">
+        <p id='toast-message'>{myState.toastMessage}</p>
     </div>
   )
 }
