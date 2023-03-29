@@ -12,8 +12,6 @@ function Analytics() {
 
   const setAnalytics = (analyticType) => {
       setAnalyticType(analyticType);
-      analyticTypes.forEach(type => document.getElementById(type).style.borderBottomColor = 'transparent');
-      document.getElementById(analyticType).style.borderBottomColor = 'orange';
   }
 
   useEffect(() => {
@@ -23,10 +21,11 @@ function Analytics() {
   return (
     <div className='analytics'>
         <div className="control-btns analytic-btns">
-          <button id='data' onClick={() => setAnalytics('data')}>DATA</button>
-          <button id='graph' onClick={() => setAnalytics('graph')}>GRAPH</button>
-          <button id='report' onClick={() => setAnalytics('report')}>REPORT</button>
+          <button onClick={() => setAnalytics('data')}>DATA</button>
+          <button onClick={() => setAnalytics('graph')}>GRAPH</button>
+          <button onClick={() => setAnalytics('report')}>REPORT</button>
         </div>
+        <div className={`analytics-border-bottom analytics-border-bottom-slider ` + (analyticType === 'data'? 'first-option': analyticType === 'graph'? 'second-option': 'third-option')}></div>
 
         { analyticType === 'data' &&
           <DataList />

@@ -22,7 +22,7 @@
 .control-btns button{
   height: 40px;
   width: 150px;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
   background-color: white;
   color: rgb(222, 149, 12);
 }
@@ -152,7 +152,32 @@
   color: rgb(62, 62, 62);
   border-radius: 0;
   width: 100%;
-  border-bottom: 5px solid lightgrey;
+}
+
+.analytics-border-bottom{
+  height: 5px;
+  background-color: lightgrey;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.analytics-border-bottom-slider{
+  background-color: orange;
+  height: 5px;
+  width: 33%;
+  transition: .5s ease all;
+}
+
+.first-option{
+  transform: translateX(0px);
+}
+
+.second-option{
+  transform: translateX(100%);
+}
+
+.third-option{
+  transform: translateX(200%);
 }
 
 .analytic-btns button:hover{
@@ -380,4 +405,17 @@
   margin-left: auto;
   margin-right: auto;
   display: none;
+}
+
+.selected-border{
+  height: 2px;
+  background-color: white;
+  width: 145px;
+  margin-bottom: 5px;
+  transition: .5s ease all;
+  transform: translateX(-90px);
+}
+
+.selected{
+  transform: translateX(90px);
 }

@@ -10,8 +10,10 @@ function Controls() {
   const dispatch = useDispatch();
 
   const [analyticMode, setAnalyticMode] = useState(true);
+  const [selected, setSelected] = useState('time');
 
   const setPropertyType = (propertyType) => {
+    setSelected(propertyType);
     dispatch({
         type: actionTypes.UPDATE_PROPERTY,
         property: propertyType
@@ -48,6 +50,7 @@ function Controls() {
             <button onClick={() => setPropertyType('time')}>Time</button>
             <button onClick={() => setPropertyType('amount')}>Amount</button>
         </div>
+        <div className={selected === 'time'? 'selected-border': 'selected selected-border'}></div>
         <button className='btn-analytics' onClick={setAnalyticModes}>{analyticMode? <AddIcon sx={{fontSize: 35, color: 'orange'}}/>: <EqualizerIcon sx={{fontSize: 35, color: 'orange'}}/>}</button>
     </div>
   ) 
